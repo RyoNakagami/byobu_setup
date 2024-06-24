@@ -1,0 +1,54 @@
+#!/bin/bash
+## copy setupfiles to the ~/.byobu directory
+## Author: Ryo Nakagami
+## Revised: 2024-06-25
+## REQUIREMENT: cp xargs
+
+set -eu
+
+function usage {
+    cat <<EOM
+Usage: $(basename "$0") [OPTION]...
+  -h                   Display help
+  -s setup_pattern     sepecify the pattern like ./byoby_setup_buntu
+  -t target_directory  default is ~/.byobu
+EOM
+
+    exit 2
+}
+
+while getopts ":s:t:h" optKey; do
+    case "$optKey" in
+    s)
+        SETUP_DIRECTORY="${OPTARG}"
+        ;;
+    t)
+        TARGET_DIRECTORY="${OPTARG}"
+        ;;
+    '-h' | '--help' | *)
+        usage
+        ;;
+    esac
+done
+
+if [ ! -d $TARGET_DIRECTORY ]; then
+    echo "The directory $TARGET_DIRECTORY is not found"
+    exit 1
+fi
+
+if [ -d $SETUP_DIRECTORY ]; then
+    read -p "Are you sure of coping $SETUP_DIRECTORY files to $TARGET_DIRECTORY directory? (y/N): " yn
+    case "$yn" in
+    [yY]*) find $SETUP_DIRECTORY -type f |
+        awk -v dirname="${SETUP_DIRECTORY}" \
+            -v targetname="${TARGET_DIRECTORY}" \
+            '{$2=gensub(dirname, targetname, 1, $1); print $0}' |
+        xargs -L1 bash -c 'cp $0 $1';;
+    *) echo "abort" ;;
+    esac
+else
+    echo "the directory $SETUP_DIRECTORY is not found"
+    exit 1
+fi
+
+#find ./$1 -type f  | xargs -i cp {} `sed "s/.\/./byobu_setup_ubuntu/sandbox/"`
