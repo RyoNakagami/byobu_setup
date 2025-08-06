@@ -45,7 +45,7 @@ __disk() {
 		t*|T*) unit="$ICON_TB" ;;
 	esac
 	[ -n "$size" ] || return
-	printf "#[bg=\#333333]Disk:%s" "$pct"; printf "%s " "$PCT";
+	printf "#[bg=\#333333]Disk:%2d" "$pct"; printf "%s " "$PCT";
 }
 
 # vi: syntax=sh ts=4 noexpandtab

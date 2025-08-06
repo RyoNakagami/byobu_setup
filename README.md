@@ -1,3 +1,10 @@
+
+![Release](https://img.shields.io/github/release/ryonakagami/byobu_setup.svg)
+![License](https://img.shields.io/github/license/ryonakagami/byobu_setup.svg)
+![Issues](https://img.shields.io/github/issues/ryonakagami/byobu_setup.svg)
+
+---
+
 ## Scope
 
 - `byobu`のセットアップ用レポジトリ
@@ -15,3 +22,5 @@
 |プログラム|説明|インストール|
 |---|---|---|
 |`gpustat`|GPU使用状況計測プログラム|`pipx install gpustat`|
+
+## Customization
