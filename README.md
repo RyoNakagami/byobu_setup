@@ -24,3 +24,19 @@
 |`gpustat`|GPU使用状況計測プログラム|`pipx install gpustat`|
 
 ## Customization
+
+### Editorの選択
+
+`select-editor`を実行することで，printscreenの表示先など，`byobu`がデフォルトで開くエディタを選択することができる：
+
+```zsh
+% select-editor
+
+Select an editor.  To change later, run 'select-editor'.
+  1. /bin/nano        <---- easiest
+  2. /usr/bin/vim.basic
+  3. /usr/bin/nvim
+  4. /usr/bin/vim.tiny
+  5. /usr/bin/code
+  6. /bin/ed
+```
